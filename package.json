@@ -1,0 +1,35 @@
+{
+
+  "name": "openJarvis",
+
+  "version": "1.0.0",
+
+  "description": "Testing framework for Jarvis.com using TestCafe",
+
+  "main": "test-runner.js",
+
+  "directories": {
+
+    "test": "tests"
+
+  },
+
+  "dependencies": {
+
+    "testcafe": "^1.8.8",
+
+    "fakerator": "^0.3.1",
+
+    "testcafe-reporter-html": "^1.4.6"
+
+  },
+
+  "scripts": {
+
+    "test": "testcafe chrome signUpPageTest.js --reporter html:reports/report.html --skip-js-errors",
+
+    "all": "testcafe chrome signUpPageTest.js --reporter html:reports/report.html --skip-js-errors"
+
+  }
+
+}
