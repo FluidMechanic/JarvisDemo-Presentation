@@ -1,0 +1,17 @@
+[
+
+  {
+    "readyLabelText" : "Ready? Book now, pay after your visit!",
+    "covidCancel" :"If you need to cancel a booking due to quarantine or any other Covid-related reason, we are waiving all cancellation fees.",
+    "addressBarLabel" : "Where should we visit?",
+     "visitFrequencyLabel": "How regularly should we visit?",
+    "visitDurationLabel" : "How long should we visit (at $35 per hour)?",
+    "visitDayLabel" : "Which day would you like your first and ongoing visits to occur?",
+    "visitTimeText": "And what time?",
+    "initialVisitLabel" :"Please note that this will be the visit time for your initial visit - following this we'll visit between 8am - 5pm (and will send you a reminder the day before to confirm the exact time). Let us know below if this does not work.",
+    "commentsLabel" :"Any comments or questions?",
+    "butlerPreferenceLabel" : "Do you prefer a male or female butler?",
+    "petsLabel": "Do you have any pets?",
+    "referenceCodeLabel" :"Any reference code?"
+  }
+]
