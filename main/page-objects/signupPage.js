@@ -7,19 +7,19 @@ class SignupPage{
 	//ObjectIdentificationSection
 	constructor(){
 		this.addressSelection = Selector('#addressInput');
-		this.time1 = Selector('#root > div > div > section > section > div > div:nth-child(1) > div > div.bookingYourDetails > form > div:nth-child(4) > div > div > div.owl-stage-outer > div > div:nth-child(3) > div > label > span');
-		this.calenderDate = Selector('#root > div > div > section > section > div > div:nth-child(1) > div > div.bookingYourDetails > form > div:nth-child(5) > div > div > div:nth-child(3) > div.react-datepicker__month > div:nth-child(4) > div.react-datepicker__day.react-datepicker__day--thu')
-		this.time2 = Selector('#root > div > div > section > section > div > div:nth-child(1) > div > div.bookingYourDetails > form > div:nth-child(6) > div > div > div.owl-stage-outer > div > div:nth-child(1) > div > label > span');
-		this.commentsSection = Selector('#root > div > div > section > section > div > div:nth-child(1) > div > div.bookingYourDetails > form > div:nth-child(6) > div > div > div.owl-stage-outer > div > div:nth-child(1) > div > label > span')
-		this.butlerSelection = Selector('#root > div > div > section > section > div > div:nth-child(1) > div > div.bookingYourDetails > form > div:nth-child(8) > ul > li:nth-child(1) > label > span')
-		this.petsSelection = Selector('#root > div > div > section > section > div > div:nth-child(1) > div > div.bookingYourDetails > form > div:nth-child(9) > ul > li:nth-child(1) > label > span')
-		this.next = Selector('#root > div > div > section > section > div > div:nth-child(1) > div > div.bookingYourDetails > form > div:nth-child(10) > div > input')
+        this.time1 = Selector('#root > div > div > section > section > div > div:nth-child(1) > div > div.bookingYourDetails > form > div:nth-child(6) > div > div > div.owl-stage-outer > div > div:nth-child(3) > div > label > span');
+		this.calenderDate = Selector('#root > div > div > section > section > div > div:nth-child(1) > div > div.bookingYourDetails > form > div:nth-child(7) > div > div > div:nth-child(3) > div.react-datepicker__month > div:nth-child(3) > div.react-datepicker__day.react-datepicker__day--fri')
+		this.time2 = Selector('#root > div > div > section > section > div > div:nth-child(1) > div > div.bookingYourDetails > form > div:nth-child(8) > div > div > div.owl-stage-outer > div > div:nth-child(1) > div > label > span');
+		this.commentsSection = Selector('#root > div > div > section > section > div > div:nth-child(1) > div > div.bookingYourDetails > form > div:nth-child(9) > textarea')
+		this.butlerSelection = Selector('#root > div > div > section > section > div > div:nth-child(1) > div > div.bookingYourDetails > form > div:nth-child(10) > ul > li:nth-child(3) > label > span')
+		this.petsSelection = Selector('#root > div > div > section > section > div > div:nth-child(1) > div > div.bookingYourDetails > form > div:nth-child(11) > ul > li:nth-child(3) > label > span')
+		this.next = Selector('#root > div > div > section > section > div > div:nth-child(1) > div > div.bookingYourDetails > form > div:nth-child(12) > div > input')
 		this.signupIframe = Selector('#root > div > div > section > section > div > div:nth-child(1) > div > div.bookingYourDetails > div > iframe')
-		this.signup = Selector('div[class="sign-email"] > a')
+        this.signup = Selector('div[class="sign-email"] > a')
 		this.firstName = Selector('#root > div > section > section > div > div > div > div > form > div > div:nth-child(2) > div > div > input[type=text]')
 		this.lastName = Selector('#root > div > section > section > div > div > div > div > form > div > div:nth-child(4) > div > div > input[type=text]')
 		this.phone = Selector('#root > div > section > section > div > div > div > div > form > div > div:nth-child(6) > div > div > input[type=text]')
-		this.email = Selector('#root > div > section > section > div > div > div > div > form > div > div.inputRow.email > div > div > input[type=text]')
+		this.email = Selector('#root > div > section > section > div > div > div > div > form > div > div.inputRow.email > div > div > div > input[type=text]')
 		this.password = Selector('#root > div > section > section > div > div > div > div > form > div > div.inputRow.password > div > div > input[type=password]')
 		this.createAccount = Selector('#root > div > section > section > div > div > div > div > form > div > div.btnRow > button')
 		this.relaxIframe = Selector('#rokt-controller-frame')
@@ -56,11 +56,11 @@ class SignupPage{
          	.switchToIframe(this.signupIframe)
 			.expect(this.signup.visible).ok()
 			.click(this.signup)
-			.typeText(this.firstName, "Rahul", { replace: true} , { paste: true })
-			.typeText(this.lastName, "Jaiswal", { replace: true} , { paste: true })
-			.typeText(this.phone, "332288191", { replace: true} , { paste: true })
-			.typeText(this.email, "test29@outlook.com", { replace: true} , { paste: true })
-			.typeText(this.password, "Jarvis@2020", { replace: true} , { paste: true })
+			.typeText(this.firstName, "Test", { replace: true} , { paste: true })
+			.typeText(this.lastName, "ProductionCheck", { replace: true} , { paste: true })
+			.typeText(this.phone, "442277681", { replace: true} , { paste: true })
+			.typeText(this.email, "test.productioncheck@mailinator.com", { replace: true} , { paste: true })
+			.typeText(this.password, "Test@2020", { replace: true} , { paste: true })
 			.click(this.createAccount)
 			.wait(2000)
 			.switchToMainWindow()
