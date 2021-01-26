@@ -8,9 +8,8 @@ import signupLabel from './main/page-objects/signupPageLabels.js'
 
 var data;
 var path = require('path')
-var testfile = path.basename(__filename).split('.')[0]
-var Fakerator = require("fakerator");
-var fakerator = Fakerator()
+var testfile = path.basename(__filename).split('.')[0];
+
 
 
 fixture `Jarvis Signup`
@@ -20,7 +19,7 @@ test
 .meta('Test_Id','1001')
 .meta('Env','Production')
 (testfile+': Validate Sign up flow', async t =>{
-  var email = fakerator.internet.email()
+  
   //await t.debug()
   console.log("here")
   await t.maximizeWindow();
@@ -36,5 +35,13 @@ test
 ('Validate the labels', async t =>{
   await signupLabel.validateLabels()
 
+})
+test
+.meta('Test_Id','1003')
+.meta('Env','Production')
+('Validate the Existing Email Adress', async t =>{
+  await t.maximizeWindow()
+  await signupPage.bookingDetails();
+  await signupPage.signupWithsameEmailDetails()
 })
 ;

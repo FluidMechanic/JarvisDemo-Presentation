@@ -3,6 +3,9 @@ import { t } from 'testcafe'
 import 'C:/JarvisDemo/main/Data/staticData.json'
 import dataset from '../Data/staticData.json' 
 
+var Fakerator = require("fakerator");
+var fakerator = Fakerator()
+
 //const dataset1 = require('C:/JarvisDemo/main/Data/staticData.json')
 
 
@@ -11,12 +14,12 @@ class SignupPage{
 	constructor(){
 		this.addressSelection = Selector('#addressInput');
         this.time1 = Selector('#root > div > div > section > section > div > div:nth-child(1) > div > div.bookingYourDetails > form > div:nth-child(6) > div > div > div.owl-stage-outer > div > div:nth-child(3) > div > label > span');
-		this.calenderDate = Selector('#root > div > div > section > section > div > div:nth-child(1) > div > div.bookingYourDetails > form > div:nth-child(7) > div > div > div:nth-child(3) > div.react-datepicker__month > div:nth-child(5) > div.react-datepicker__day.react-datepicker__day--fricls')
+		this.calenderDate = Selector('#root > div > div > section > section > div > div:nth-child(1) > div > div.bookingYourDetails > form > div:nth-child(7) > div > div > div:nth-child(3) > div.react-datepicker__month > div:nth-child(5) > div.react-datepicker__day.react-datepicker__day--fri')
 		this.time2 = Selector('#root > div > div > section > section > div > div:nth-child(1) > div > div.bookingYourDetails > form > div:nth-child(8) > div > div > div.owl-stage-outer > div > div:nth-child(1) > div > label > span');
 		this.commentsSection = Selector('#root > div > div > section > section > div > div:nth-child(1) > div > div.bookingYourDetails > form > div:nth-child(9) > textarea')
 		this.butlerSelection = Selector('#root > div > div > section > section > div > div:nth-child(1) > div > div.bookingYourDetails > form > div:nth-child(10) > ul > li:nth-child(3) > label > span')
 		this.petsSelection = Selector('#root > div > div > section > section > div > div:nth-child(1) > div > div.bookingYourDetails > form > div:nth-child(11) > ul > li:nth-child(3) > label > span')
-		this.next = Selector('#root > div > div > section > section > div > div:nth-child(1) > div > div.bookingYourDetails > form > div:nth-child(12) > div > inputcls')
+		this.next = Selector('#root > div > div > section > section > div > div:nth-child(1) > div > div.bookingYourDetails > form > div:nth-child(13) > div > input')
 		this.signupIframe = Selector('#root > div > div > section > section > div > div:nth-child(1) > div > div.bookingYourDetails > div > iframe')
         this.signup = Selector('div[class="sign-email"] > a')
 		this.firstName = Selector('#root > div > section > section > div > div > div > div > form > div > div:nth-child(2) > div > div > input[type=text]')
@@ -27,6 +30,7 @@ class SignupPage{
 		this.createAccount = Selector('#root > div > section > section > div > div > div > div > form > div > div.btnRow > button')
 		this.relaxIframe = Selector('#rokt-controller-frame')
 		this.gotoApp = Selector('#signup-completed > div:nth-child(3) > input')
+		this.emailError=Selector('#root > div > section > section > div > div > div > div > form > div.orangeBox > p > strong')
 
 	}
     //ReusableFunctions
@@ -53,6 +57,31 @@ class SignupPage{
     //signupWithEmailDetails()--This function allows the client to signup using the Personal/Professional Email
 	async signupWithEmailDetails(){
 			console.log("Signing up with email")
+			var dynEmail ="produtciontest"+fakerator.internet.email()
+		    console.log(dynEmail)
+			await t
+			.wait(2000)
+			.switchToMainWindow()
+			 //await t.debug()
+         	.switchToIframe(this.signupIframe)
+			.expect(this.signup.visible).ok()
+			.click(this.signup)
+			.typeText(this.firstName,dataset.firstName, { replace: true} , { paste: true })
+			.typeText(this.lastName,dataset.lastName, { replace: true} , { paste: true })
+			.typeText(this.phone,dataset.phoneNumber, { replace: true} , { paste: true })
+			.typeText(this.email,dynEmail, { replace: true} , { paste: true })
+			.typeText(this.password,dataset.passWord, { replace: true} , { paste: true })
+			.click(this.createAccount)
+			.wait(2000)
+			.switchToMainWindow()
+	        .expect(this.gotoApp.exists).ok()
+	}
+    //This function is to test the negative scenario. User cannot regsiter using an existing email address
+	async signupWithsameEmailDetails()
+	{
+		console.log("User should not be able to register again with the same email addres or an existing email address")
+		console.log("Signing up with email")
+		
 		    await t
 			.wait(2000)
 			.switchToMainWindow()
@@ -63,19 +92,15 @@ class SignupPage{
 			.typeText(this.firstName,dataset.firstName, { replace: true} , { paste: true })
 			.typeText(this.lastName,dataset.lastName, { replace: true} , { paste: true })
 			.typeText(this.phone,dataset.phoneNumber, { replace: true} , { paste: true })
-			.typeText(this.email,dataset.phoneNumber, { replace: true} , { paste: true })
+			.typeText(this.email,dataset.userEmail, { replace: true} , { paste: true })
 			.typeText(this.password,dataset.passWord, { replace: true} , { paste: true })
-			.click(this.createAccount)
+		    .click(this.createAccount)
 			.wait(2000)
-			.switchToMainWindow()
-	//		.expect(this.gotoApp.exists).ok()
-	}
-    //This function is to test the negative scenario. User cannot regsiter using an existing email address
-	//async signupWithsameEmailDetails()
-	//{
+	        .takeElementScreenshot(this.emailError)
+	        .expect(this.emailError.exists).ok()
 		
 
-	//}
+	}
 
 }
 export default new SignupPage();
